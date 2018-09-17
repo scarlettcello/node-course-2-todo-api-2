@@ -280,6 +280,18 @@ describe('POST /users', () => {
     });
 });
 
+describe('GET /users', () => {
+    it('should return all users', (done) => {
+        request(app)
+            .get('/users')
+            .expect(200)
+            .expect((res) => {
+                expect(res.body.users.length).toBe(2);
+            })
+            .end(done);
+    })
+});
+
 describe('POST /users/login', () => {
     it('should login user and return auth token', (done) => {
         request(app)
